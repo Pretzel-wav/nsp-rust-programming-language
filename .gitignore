@@ -1,0 +1,10 @@
+# Ignore build artifacts for all projects
+**/target/
+**/*.rs.bk
+**/*.o
+
+# Ignore IDE files
+**/.vscode/
+
+# Ignore lock files if they are libraries
+# **/Cargo.lock
