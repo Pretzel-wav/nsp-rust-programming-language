@@ -90,23 +90,24 @@ $ cargo build
     - Crates like `rand` meant to be used in other programs are *library crates*.
 - `Cargo.lock` is a file created that contains all of the working dependencies for a project. Future builds will use these dependencies, giving you a reproducible build.
 - `$ cargo update` will figure out the latest versions that work with your `Cargo.toml` configuration, creating a new `Cargo.lock`
+- `$ cargo doc --open` will open the docs **provided by all of your dependencies**. This is fussy; I had to run `$ cargo doc -p rand --open` to download the rand docs first, but afterward they were included in `$ cargo doc --open`.
 
 #### Crates
 
 - `std` - Standard library. Contains many basic features.
-- `std::io` - i/o crate in the standard library. Contains things like `stdin()` for reading user input 
+- `std::io` - i/o crate in the standard library. Contains things like `stdin()` for reading user input
+- `std::cmp` -  Comparison crate in the standard library. Contains `Ordering` type, which is an enum of `[Less, Greater, Equal]`; the three outcomes possible when comparing two values.
 - `rand` - Random generation library
 
 #### Functions
 
 | Name | Signature | Description |
 |--|--|--|
-| `std::io::stdin::read_line()` | `pub fn read_line(&self, buf: &mut String) -> Result<usize>` | Read a line of user input |
-| `std::println!()` | `std::println` | Print to standard output, with a newline |
+| `std::io::stdin::read_line` | `pub fn read_line(&self, buf: &mut String) -> Result<usize>` | Read a line of user input |
+| `std::println!` | `std::println` | Print to standard output, with a newline |
+| `rand::thread_rng` | `pub fn thread_rng() -> ThreadRng` | Create a fast, pre-initialized random value (deprecated since 0.9.0; use `rand::rng()` instead) |
 ----------------------------------------
 
 ### Notes
 
 `::` indicates an *associated function*, which is implemented on a type, not a particular instance of a type. Some languages call this a *static method*.
-
-A crate is a collection of Rust source code files. 
