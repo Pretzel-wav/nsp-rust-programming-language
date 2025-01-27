@@ -3,8 +3,10 @@
 
 ## Chapter 01 - Getting Started
 
+### Summary
+
 ----------------------------------------
-### Helpful commands
+#### Helpful commands
 
 - Update Rust
     - `$ rustup update`
@@ -25,12 +27,14 @@
 - Build project for release
     - `$ cargo build --release`
 
-### Conventions
+#### Conventions
 
 - Formatting can be standardized using `rustfmt`
 - `fn() {` function name, then space, then brace
 - Indents are four spaces, not a tab
 ----------------------------------------
+
+### Notes
 
 Tools installed with Rust
 - **Cargo** - dependency manager and build tool
@@ -67,3 +71,16 @@ $ cd someproject
 $ cargo build
 ```
 
+## Chapter 02 - Programming a Guessing Game
+
+### Summary
+
+----------------------------------------
+
+#### Helpful Commands
+
+#### Conventions
+
+----------------------------------------
+
+### Notes
