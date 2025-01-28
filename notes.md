@@ -124,6 +124,7 @@ $ cargo build
 - Don't write code that overflows intentionally; instead, use the `Wrapping` type in the standard library.
 - Indicate planned unused variables with an underscore: `let (_x, y, _z) = tup; // _x and _z are not used later in the code`
 - Functions are named in `snake_case()`
+- Almost always use `for` loops instead of `loop` or `while`. `for number in (1..4) {}`
 
 #### Language Features
 
