@@ -111,3 +111,109 @@ $ cargo build
 ### Notes
 
 `::` indicates an *associated function*, which is implemented on a type, not a particular instance of a type. Some languages call this a *static method*.
+
+## Chapter 03 - Common Programming Concepts
+
+### Summary
+
+----------------------------------------
+
+#### Conventions
+
+- Constants are named `IN_ALL_CAPS_WITH_UNDERSCORES`
+- Don't write code that overflows intentionally; instead, use the `Wrapping` type in the standard library.
+- Indicate planned unused variables with an underscore: `let (_x, y, _z) = tup; // _x and _z are not used later in the code`
+- Functions are named in `snake_case()`
+
+#### Language Features
+
+- Underscores can be placed in numeric literals to improve readability. `100_000` == `100000`
+- **Shadowing** allows you to declare a new variable with the same name and value as a previous value, by using the `let` keyword with the same variable name
+- Overflow wrapping is checked and panicks in debug mode, but values simply wrap when compiled in release mode.
+- Rust has four scalar data types: integers, floating-point numbers, booleans, and characters
+- Character literals are specified with `'`, string literals apre specified with `"`
+- Char type is 4 bytes in size and represents a Unicode Scalar Value
+- Rust has two compound types: Tuples and Arrays `(tuples)`, `[arrays]`
+    - Tuples have a fixed length, cannot change in size, and can combine various types `let tup: (i32, f64, u8) = (500, 6.4, 1);`
+        - Assign variables from a tuple by *destructuring* `let (x, y, z) = tup;`
+        - Access variables in a tuple with `.` indexing `let x = tup.0;`
+    - Arrays have a fixed length, cannot change in size, and only contain a single type `let a: [i32; 5] = [1, 2, 3, 4, 5];`
+        - You can declare an array with a repeated value using `let a = [3; 200]; // array of length 200, every value is 3`
+        - Access array elements with `[]` indexing `let x = a[0];`
+    - For collections that can change in size, use Vectors
+- Rust doesn't care where you define functions, only that they're defined somewhere
+- Parameter types must be declared in the function signature
+- Rust is an *expression-based* language. Statements and Expressions are different.
+    - Statements perform an action and do not return a value `let y = 6;`
+    - Expressions evaluate to a resulting value
+
+##### Numeric types
+| Length | Signed int | Unsigned int | Float |
+|--|--|--|--|
+| 8-bit | `i8` | `u8` | N/A |
+| 16-bit | `i16` | `u16` | N/A |
+| 32-bit | `i32` | `u32` | `f32` |
+| 64-bit | `i64` | `u64` | `f64` |
+| 128-bit | `i128` | `u128` | N/A |
+| arch | `isize` | `usize` | N/A |
+
+##### Integer literals
+*Note: All literals except Byte can be suffixed by a type, e.g. `57u8`, and all literals can use an underscore as a visual separator, e.g. `1_000`*
+| Number literal | Example |
+|--|--|
+| Decimal | `98_222` |
+| Hex | `0xff` |
+| Octal | `0o77` |
+| Binary | `0b1111_0000` |
+| Byte (u8 only) | `b'A'` |
+
+
+----------------------------------------
+
+### Notes
+
+Differences between immutable variables and constants
+- Declare constants with `const`
+- You cannot use `mut` with constants; they're not just immutable by default, they're *always* immutable
+- The data type of a constant must be annotated; they're never implicitly assigned
+- Constants can be declared in any scope, including the global scope
+- Constants may only be set to a constant expression, i.e. not to the result of a function call or any other value computed at runtime
+- Constants are valid for the entire time a program runs, within the scope they were declared in
+
+Differences between mutable variables and shadowing variables
+- A compile-time error will occur if you try to assign an immutable variable without the `let` keyword
+- The shadowed variable will be immutable after assignment
+- Shadowing creates a new variable, just with the same name. So you're adding another value to memory.
+- Shadowing allows you to use different types for the variables after transformation.
+    - For example, if you are creating a variable for the number of spaces to add to a string, you could write something like:
+    ```rust
+    let spaces = "   ";         // returns &str
+    let spaces = spaces.len();  // returns usize
+    ```
+    - This is allowed because you have a &str-typed variable in the first `spaces`, and a usize-typed variable in the second `spaces`. Using `mut` wouldn't work in this instance:
+    ```rust
+    let mut spaces = "   ";
+    spaces = spaces.len(); // raises a data type error! spaces is a &str, but .len() returns a usize
+    ```
+    - This allows you to avoid creating new variable names, like `spaces_str` and `spaces_int`
+
+Differences between statements and expressions
+- Statements perform an action and do not return a value
+```rust
+fn main() {
+    let x = (let y = 6); // "expected expression, found statement (`let`)" error. let does not return a value!
+}
+```
+- Expressions perform an action and do return a value
+```rust
+fn main() {
+    let x = 5; // `let x = 5` is a statement binding 5 to x. `5` is an expression evaluating to 5, which gets bound to x in the statement
+
+    let y = {      // curly braces indicate an expression
+        let x = 3; // same as `let x = 5`
+        x + 1      // an expression evaluating to x + 1. No semicolon because it's an expression!
+    };             // the end of the curly brace block evaluates the expression, which gets bound to y in the statement
+
+    println!("The value of y is {}", y); // the macro is an expression evaluated with its input, which is then executed in the statement (note the semicolon)
+}
+```
