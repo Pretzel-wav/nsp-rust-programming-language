@@ -22,4 +22,14 @@ fn main() {
         number = number - 1;
     }
     println!("LIFTOFF!!!");
+
+    // pg 56, Looping Through a Collection with for
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < 5 {
+        println!("the value is {}", a[index]);
+        
+        index = index + 1;
+    }
 }
