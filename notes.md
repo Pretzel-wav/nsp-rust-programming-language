@@ -145,7 +145,9 @@ $ cargo build
 - Parameter types must be declared in the function signature
 - Rust is an *expression-based* language. Statements and Expressions are different.
     - Statements perform an action and do not return a value `let y = 6;`
-    - Expressions evaluate to a resulting value
+    - Expressions evaluate to a resulting value `{ x + 1 } `
+- The return value of a function is the result of the final expression in that function
+- Conditionals must be booleans, meaning `if number {}` is not a valid construct
 
 ##### Numeric types
 | Length | Signed int | Unsigned int | Float |
