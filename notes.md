@@ -220,3 +220,18 @@ fn main() {
     println!("The value of y is {}", y); // the macro is an expression evaluated with its input, which is then executed in the statement (note the semicolon)
 }
 ```
+
+## Chapter 04 - Understanding Onwership
+
+## Summary
+
+----------------------------------------
+
+----------------------------------------
+
+## Notes
+
+Ownership Rules
+- Each value has a variable in Rust that's called its *owner*
+- There can only be one owner at a time
+- When the owner goes out of scope, the value will be dropped
