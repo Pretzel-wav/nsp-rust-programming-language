@@ -99,3 +99,28 @@ fn calculate_length(s: String) -> (String, usize) {
 
     (s, length)
 }
+
+// pg 70, References and Borrowing
+fn example_borrowing() {
+    let s1 = String::from("hello");
+
+    let len = calculate_length_with_reference(&s1); // creates reference to value in s1
+    
+    println!("The length of '{}' is {}.", s1, len);
+}
+
+fn calculate_length_with_reference(s: &String) -> usize { // s is a reference to a String
+    s.len()
+}   // Here, s goes out of scope. But because it does not have ownership of what it
+    // refers to, nothing happens.
+
+// pg 71, References and Borrowing (part 2)
+fn example_change_borrowing() {
+    let s = String::from("hello");
+
+    change(&s);
+}
+
+fn change(some_string: &str) {
+    some_string.push_str(", world"); // error! You can't modify a borrowed value!
+}

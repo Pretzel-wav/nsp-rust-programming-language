@@ -235,6 +235,8 @@ fn main() {
 - Rust has a special annotation called the `Copy` trait that is applied to types like integers that are stored on the stack. If a type has the `Copy` trait, the older variable is still usable after assignment.
 - Rust won't let us annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.
 - Passing a variable to a function will follow the same copy rules as variable assignment does.
+- `&` references create pointers to the reference on the stack, without taking ownership of them.
+- Having references as function parameters is called **borrowing**.
 ----------------------------------------
 
 ## Notes
