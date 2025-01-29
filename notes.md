@@ -227,6 +227,10 @@ fn main() {
 
 ----------------------------------------
 
+### Language Features
+
+- `"String Literals"` are immutable `str`
+- When a variable goes out of scope, Rust calls a special function `drop` to return the memory. Rust calls `drop` automatically at the closing bracket.
 ----------------------------------------
 
 ## Notes
@@ -235,3 +239,5 @@ Ownership Rules
 - Each value has a variable in Rust that's called its *owner*
 - There can only be one owner at a time
 - When the owner goes out of scope, the value will be dropped
+
+Calling `String::from` (and similar functions) requests memory from the operating system at runtime
