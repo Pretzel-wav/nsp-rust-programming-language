@@ -237,6 +237,8 @@ fn main() {
 - Passing a variable to a function will follow the same copy rules as variable assignment does.
 - `&` references create pointers to the reference on the stack, without taking ownership of them.
 - Having references as function parameters is called **borrowing**.
+- Only one mutable reference at a time can be made on a particular piece of data in a particular scope. This prevents data races.
+
 ----------------------------------------
 
 ## Notes
@@ -265,3 +267,7 @@ Types with `Copy` trait:
 - `char`
 - Tuples and Arrays, if they only contain `Copy` types
 
+A data race happens when these three things occur:
+- Two or more pointers access the same data at the same time
+- At least one of the pointers is being used to write to the data
+- There's no mechanism being used to synchronizze access to the data.

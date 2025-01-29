@@ -124,3 +124,68 @@ fn example_change_borrowing() {
 fn change(some_string: &str) {
     some_string.push_str(", world"); // error! You can't modify a borrowed value!
 }
+
+// pg 72, Mutable References
+fn example_mut_references() {
+    let mut s = String::from("hello");  // s was immutable; make it mutable
+
+    change(&mut s);                     // pass in a mutable reference
+}
+
+fn change(some_string: &mut String) {   // take a mutable reference
+    some_string.push_str(", world!");
+}
+
+// pg 72, Mutable References (part 2)
+fn example_multiple_mut_refs() {
+    let mut s = String::from("hello");
+
+    let r1 = &mut s;
+    let r2 = &mut s; // error! cannot borrow `s` as mutable more than once at a time!
+}
+
+// pg 73, Mutable References (part 3)
+fn example_brackets_mut_refs() {
+    let mut s = String::from("hello");
+
+    {
+        let r1 = &mut s;
+    }   // r1 goes out of scope here, so we can make a new reference with no problems.
+
+    let r2 = &mut s;
+}
+
+// pg 73, Mutable References (part 4)
+fn example_multiple_mut_refs_with_ref() {
+    let mut s = String::from("hello");
+
+    let r1 = &s;        // no problem
+    let r2 = &s;        // no problem
+    let r3 = &mut s;    // error! Cannot borrow as mutable because it is also borrowed as immutable!
+}
+
+// pg 74, Dangling References
+fn example_dangling_refs() {
+    let reference_to_nothing = dangle(); // reference obtained, but data went out of scope in function
+}
+
+// error! Missing lifetime specifier! The solution is to return s directly, not the reference.
+fn dangle() -> &String {
+    let s = String::from("hello"); // s comes into scope
+
+    &s                             // reference to s created
+}                                  // reference moved back to calling function, then s goes out of scope
+
+// pg 76, The Slice Type
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+
