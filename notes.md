@@ -238,7 +238,7 @@ fn main() {
 - `&` references create pointers to the reference on the stack, without taking ownership of them.
 - Having references as function parameters is called **borrowing**.
 - Only one mutable reference at a time can be made on a particular piece of data in a particular scope. This prevents data races.
-
+- String slices `&str[start..end]` are inclusive at lower bound, exclusive at upper bound
 ----------------------------------------
 
 ## Notes

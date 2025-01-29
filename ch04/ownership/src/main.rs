@@ -177,15 +177,15 @@ fn dangle() -> &String {
 }                                  // reference moved back to calling function, then s goes out of scope
 
 // pg 76, The Slice Type
-fn first_word(s: &String) -> usize {
+fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
-            return i;
+            return &s[0..i];
         }
     }
 
-    s.len()
+    &s[..]
 }
 
