@@ -231,6 +231,10 @@ fn main() {
 
 - `"String Literals"` are immutable `str`
 - When a variable goes out of scope, Rust calls a special function `drop` to return the memory. Rust calls `drop` automatically at the closing bracket.
+- Rust will never automatically create "deep" copies of your data. Therefore, any automatic copying can be assumed to be inexpensive.
+- Rust has a special annotation called the `Copy` trait that is applied to types like integers that are stored on the stack. If a type has the `Copy` trait, the older variable is still usable after assignment.
+- Rust won't let us annotate a type with the `Copy` trait if the type, or any of its parts, has implemented the `Drop` trait.
+- Passing a variable to a function will follow the same copy rules as variable assignment does.
 ----------------------------------------
 
 ## Notes
@@ -241,3 +245,21 @@ Ownership Rules
 - When the owner goes out of scope, the value will be dropped
 
 Calling `String::from` (and similar functions) requests memory from the operating system at runtime
+
+If two variables are pointing to the same data on the heap, when `drop` is called by Rust, it will try to free the same data twice. This causes a *double free* error, and is why there can only be a single owner!
+
+```rust
+// Copying the reference without copying the heap data is known as a
+// "shallow copy" in other languages. But since Rust invalidates the
+// old variable, it's known as a "move" in Rust.
+let s1 = String::from("hello"); // allocate data on heap, create reference on stack
+let s2 = s1; // copy reference on stack, invalidate s1 variable
+```
+
+Types with `Copy` trait:
+- All integers
+- All floats
+- `bool`
+- `char`
+- Tuples and Arrays, if they only contain `Copy` types
+
