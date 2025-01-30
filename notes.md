@@ -306,7 +306,17 @@ struct Color(i32, i32, i32);
 let black = Color(0,0,0);
 ```
 - Structs with no fields are called *unit-like structs*, because they are similar to `()`, the unit type.
+- *Methods* are similar to functions, but they're defined within the context of a struct. Their first parameter is always `self`.
+- Methods can take ownership of `self`, or borrow mutably `mut &self` or immutably `&self`, just like any other function.
+- *Associated Functions*, like methods, are defined in `impl` blocks, but don't take `self` as a parameter. So they don't work with an instance of the struct.
+- Associated Functions are often used with struct constructors to tie the function to the struct, but you don't yet have an instance of the struct to work with. `String::from()`
+- It's valid to have multiple `impl` blocks.
+
 ----------------------------------------
 
 ### Notes
 
+`Display` is intended for direct end user consumption.
+`Debug` is for debugging values. Print values with `{:?}`, or pretty-print them with `{:#?}`
+
+It's useful to create methods when the function applies specifically to the struct, with limited use elsewhere.
