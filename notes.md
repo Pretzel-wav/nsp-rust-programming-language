@@ -282,6 +282,23 @@ A data race happens when these three things occur:
 
 - Use dot notation to access values from structs `user1.email`
 - You can define an entire instance of a struct as mutable, but not parts of it. `user1` can be mutable, but `user1.email` cannot be mutable without `user1.username` also being mutable.
+- Using *field init shorthand* syntax allows you to avoid repeating tedious build statements
+```rust
+fn build_user(email: String, username: String) -> User {
+    User {
+        username, // not username = username
+        email     // not email = email
+    }
+}
+```
+- Using *struct update syntax* allows you to initialize a struct instance with the values from another instance
+```rust
+let user3 = User {
+        email: String::from("yetanother@example.com"),
+        username: String::from("thirdusername"),
+        ..user1 // "use the rest of the values from user1"
+    };
+```
 ----------------------------------------
 
 ### Notes
