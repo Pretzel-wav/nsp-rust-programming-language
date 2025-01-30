@@ -223,11 +223,11 @@ fn main() {
 
 ## Chapter 04 - Understanding Onwership
 
-## Summary
+### Summary
 
 ----------------------------------------
 
-### Language Features
+#### Language Features
 
 - `"String Literals"` are immutable `str`
 - When a variable goes out of scope, Rust calls a special function `drop` to return the memory. Rust calls `drop` automatically at the closing bracket.
@@ -241,7 +241,7 @@ fn main() {
 - String slices `&str[start..end]` are inclusive at lower bound, exclusive at upper bound
 ----------------------------------------
 
-## Notes
+### Notes
 
 Ownership Rules
 - Each value has a variable in Rust that's called its *owner*
