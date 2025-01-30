@@ -271,3 +271,18 @@ A data race happens when these three things occur:
 - Two or more pointers access the same data at the same time
 - At least one of the pointers is being used to write to the data
 - There's no mechanism being used to synchronizze access to the data.
+
+## Chapter 05 - Using Structs to Structure Related Data
+
+### Summary
+
+----------------------------------------
+
+#### Language Features
+
+- Use dot notation to access values from structs `user1.email`
+- You can define an entire instance of a struct as mutable, but not parts of it. `user1` can be mutable, but `user1.email` cannot be mutable without `user1.username` also being mutable.
+----------------------------------------
+
+### Notes
+
