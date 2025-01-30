@@ -14,10 +14,13 @@ fn build_user(email: String, username: String) -> User {
     }
 }
 
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
 fn main() {
     let mut user1 = User { // can define struct instances as mutable
-        email: String::from("someone@example.com"),
-        username: String::from("someusername123"),
+        email: String::from("someone@example.com"), // String, not &str, because we want the struct
+        username: String::from("someusername123"),  // to own its values. Using &str would require lifetimes.
         active: true,
         sign_in_count: 1,
     };
@@ -36,4 +39,8 @@ fn main() {
         username: String::from("thirdusername"),
         ..user1 // struct update syntax; "use the rest of the values from user1"
     };
+
+    let black = Color(0,0,0);
+    let origin = Point(0,0,0);
+
 }

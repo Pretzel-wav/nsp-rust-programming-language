@@ -299,6 +299,13 @@ let user3 = User {
         ..user1 // "use the rest of the values from user1"
     };
 ```
+- *Tuple structs* are structs without field names. They're useful for adding the extra semantics of a struct, but less verbose.
+    - Tuple structs are different types, so a function that takes a `Color` argument will error if a `Point` is passed to it, despite both structs having a signature of `(i32, i32, i32)`.
+```rust
+struct Color(i32, i32, i32);
+let black = Color(0,0,0);
+```
+- Structs with no fields are called *unit-like structs*, because they are similar to `()`, the unit type.
 ----------------------------------------
 
 ### Notes
