@@ -386,10 +386,31 @@ Using structs in this way would make it difficult to pass all of these message t
     - **Paths** - A way of naming an item, such as a struct, function, or module
 - Crates can be *binary* or *library*
 - The **crate root** is a source file that the Rust compiler starts from to build the crate
+- Package > Crate > Module > Items (e.g. `fn`, `struct`, `trait`, etc)
 - A **package** is one or more crates that provide a set of functionality
-    - A package contains a `Cargo.toml` file that describes how to build those crates
+    - A package contains a `Cargo.toml` file that describes how to build those crates. Running `cargo new` creates a package.
+    - `src/main.rs` is the conventional crate root of binary packages
+    - `src/lib.rs` is the conventional crate root of library packages
     - A package must contain zero or one *library crates*, but not more
     - There is no limit to the number of *binary crates* in a package
+    - Placing multiple files in the `src/bin` directory creates a package with multiple binary crates
+- A **module** organizes code within a crate into groups
+    - This can be a group of functions, structs, enums, traits, etc.
+- A **path** refers to the location of a module in the same way a path refers to the location of a directory
+    - An *absolute path* starts from a crate root
+    - A *relative path* starts from the current module
+    - Both absolute and relative paths use `::`
+- Privacy boundary:
+    - All items are private by default
+    - Parents cannot use private items of child modules
+    - Children can use private items of parent modules
+    - Use the `pub` keyword to make an item public
+#### Mindset
+
+- "Our preference is to specify absolute paths because it's more likely to move code definitions and item calls independently of each other."
+
 ----------------------------------------
 
 ### Notes
+
+"Adding the `pub` keyword in front of `mod hosting` makes the module public. **If you can access `front_of_house`**, you can access `hosting`.
