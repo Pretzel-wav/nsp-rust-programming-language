@@ -320,3 +320,52 @@ let black = Color(0,0,0);
 `Debug` is for debugging values. Print values with `{:?}`, or pretty-print them with `{:#?}`
 
 It's useful to create methods when the function applies specifically to the struct, with limited use elsewhere.
+
+## Chapter 06 - Enums and Pattern Matching
+
+### Summary
+
+----------------------------------------
+
+#### Language Features
+
+- Each arm of an enum can have a different set of associated data types
+- You can `impl` behavior onto enums as well
+- Rust does not have a `null` value.
+- `Option<T>` can be `Some(T)` or `None`
+    - `Some(T)` contains the value `T`
+    - `None` 
+    - `<T>` means that `Some` can hold one item of data of any type
+- `match` will run the first arm that matches and not evaluate any of the others
+- With `if`, the comparison must be a boolean value, but in `match`, it can be any type
+
+#### Mindset
+
+- IP addresses can be v4 or v6, but not both at the same time. "That property makes enum appropriate, because enum values can only be one of the variants."
+- "Both v4 and v6 addresses are still IP addreses, so they should be treated as the same type when the code is handling situations that apply to any kind of IP address."
+
+----------------------------------------
+
+### Notes
+
+Enums are similar to *algebraic data types* in functional languages.
+
+Consider this enum:
+```rust
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+```
+
+To create the same thing with structs, it would have to look like this:
+```rust
+struct QuitMessage;                         // unit struct
+struct MoveMessage { x: i32, y: i32 }
+struct WriteMessage (String);               // tuple struct
+struct ChangeColorMessage(i32, i32, i32);   // tuple struct
+```
+
+Using structs in this way would make it difficult to pass all of these message types to any function that is relevant to all messages.
