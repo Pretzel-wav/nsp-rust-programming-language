@@ -369,3 +369,27 @@ struct ChangeColorMessage(i32, i32, i32);   // tuple struct
 ```
 
 Using structs in this way would make it difficult to pass all of these message types to any function that is relevant to all messages.
+
+## Chapter 07 - Managing Growing Projects with Packages, Crates, and Modules
+
+### Summary
+
+----------------------------------------
+
+#### Language Features
+
+- A package can contain multiple binary crates and optionally one library crate.
+- Rust's **module system** allows for organization of the code. This includes:
+    - **Packages** - a Cargo feature that lets you build, test, and share crates
+    - **Crates** - A tree of modules that produces a library or executable
+    - **Modules** and `use` - Lets you control the organization, scope, and privacy of paths
+    - **Paths** - A way of naming an item, such as a struct, function, or module
+- Crates can be *binary* or *library*
+- The **crate root** is a source file that the Rust compiler starts from to build the crate
+- A **package** is one or more crates that provide a set of functionality
+    - A package contains a `Cargo.toml` file that describes how to build those crates
+    - A package must contain zero or one *library crates*, but not more
+    - There is no limit to the number of *binary crates* in a package
+----------------------------------------
+
+### Notes
