@@ -425,3 +425,31 @@ Using structs in this way would make it difficult to pass all of these message t
 ### Notes
 
 "Adding the `pub` keyword in front of `mod hosting` makes the module public. **If you can access `front_of_house`**, you can access `hosting`.
+
+## Chapter 08 - Common Collections
+
+### Summary
+
+----------------------------------------
+
+#### Language Features
+
+- Common collections
+    - A **vector** stores a variable number of values of the same type
+    - A **string** is a collection of characters
+    - A **hash map** is a collection of key:value pairs.
+
+#### Conventions
+
+- Usually, you'll have some values to initialize in a vector, so you'll probably use `vec!` more than `Vec::new()`
+
+#### Mindset
+
+- "Vectors are useful when you have a list of items, such as the lines of text in a file or the prices of items in a shopping cart."
+----------------------------------------
+
+### Notes
+
+Collection documentation at [htttps://doc.rust-lang.org/stable/std/collections].
+
+v.push() requires a mutable borrow, and even though it's pushing to the end of the vector, you still cannot break the borrowing rules with references at the beginning of the vector.
