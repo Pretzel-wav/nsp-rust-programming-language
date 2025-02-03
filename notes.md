@@ -400,11 +400,22 @@ Using structs in this way would make it difficult to pass all of these message t
     - An *absolute path* starts from a crate root
     - A *relative path* starts from the current module
     - Both absolute and relative paths use `::`
+    - Using `super` at the start of a path is like `..` in the file directory
+    - Bring a path into scope with the `use` keyword
 - Privacy boundary:
     - All items are private by default
     - Parents cannot use private items of child modules
     - Children can use private items of parent modules
     - Use the `pub` keyword to make an item public
+- `*` is the **glob operator**. It brings all public items in the current path into scope. `use std::collections::*`
+- A semicolon after the `mod` keyword tells Rust to *load* the module, not *define* the module. `{}` tells Rust to define it.
+
+#### Conventions
+
+- Idiomatic use of `use`:
+    - Functions are declared to the parent module.  `crate::front_of_house::hosting`, not `crate::front_of_house::hosting::add_to_waitlist`
+    - Structs, enums, etc. get declared fully. `use std::collections::HashMap`
+
 #### Mindset
 
 - "Our preference is to specify absolute paths because it's more likely to move code definitions and item calls independently of each other."
