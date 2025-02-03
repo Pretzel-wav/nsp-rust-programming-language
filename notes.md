@@ -438,6 +438,11 @@ Using structs in this way would make it difficult to pass all of these message t
     - A **vector** stores a variable number of values of the same type
     - A **string** is a collection of characters
     - A **hash map** is a collection of key:value pairs.
+- Strings in Rust
+    - Rust has one string type in the core language, the string slice `str`
+    - Additionally, in the standard library, Rust provides the `String` type, which is growable, mutable, owned, UTF-8 encoded
+    - When someone refers to "strings in Rust," they're usually referring to both types, not one or the other.
+    - Standard library also supplies some other string types, like `OsString`, `OsStr`, `CString`, and `CStr`
 
 #### Conventions
 

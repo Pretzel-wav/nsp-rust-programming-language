@@ -45,6 +45,21 @@ fn main() {
         SpreadsheetCell::Text(String::from("blue")),
         SpreadsheetCell::Float(10.12),
     ];
+
+    // initializing strings
+    let mut s = String::new();                  // via String::new()
+    let mut s = "initial contents".to_string(); // via to_string()
+    let s2 = String::from("another string");    // via String::from()
+
+    // mutating strings
+    s.push_str(", more contents from push_str");// add &str
+    s.push(',');                                 // add char (note single quotes)
+    
+    // + uses the `add()` function, signature `fn add(self, s: &str) -> String {`
+    let total_string = s + &s2; // note that s has been moved and can no longer be used
+
+    println!("{}", total_string);
+
 }
 
 enum SpreadsheetCell {
