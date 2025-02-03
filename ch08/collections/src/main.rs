@@ -37,4 +37,18 @@ fn main() {
         println!("{}", i);
     }
 
+    // storing different types in a vec as an enum
+    // Each item of this vec is a value of type SpreadsheetCell.
+    // SpreadsheetCell can be one of Int, Float, or Text. Each has its own data type.
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
+}
+
+enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
 }

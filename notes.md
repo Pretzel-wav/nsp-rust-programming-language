@@ -446,6 +446,8 @@ Using structs in this way would make it difficult to pass all of these message t
 #### Mindset
 
 - "Vectors are useful when you have a list of items, such as the lines of text in a file or the prices of items in a shopping cart."
+- "If you don't know the exhaustive set of types the program will get at runtime to store in a vector, the enum technique won't work. Instead, you can use a `trait` object."
+
 ----------------------------------------
 
 ### Notes
