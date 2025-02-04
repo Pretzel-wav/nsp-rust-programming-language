@@ -53,13 +53,24 @@ fn main() {
 
     // mutating strings
     s.push_str(", more contents from push_str");// add &str
-    s.push(',');                                 // add char (note single quotes)
+    s.push(',');                                // add char (note single quotes)
     
     // + uses the `add()` function, signature `fn add(self, s: &str) -> String {`
     let total_string = s + &s2; // note that s has been moved and can no longer be used
 
     println!("{}", total_string);
 
+    // combining strings with format!()
+    let s = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let total_string = format!("{}-{}-{}", s, s2, s3); // does not take ownership
+
+    println!("{}-{}-{}", s, s2, s3);
+
+    // indexing into strings
+    // let i = s[1]; // error! type 'str' cannot be indexed by '{integer}'
 }
 
 enum SpreadsheetCell {

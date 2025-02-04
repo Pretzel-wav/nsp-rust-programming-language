@@ -443,6 +443,10 @@ Using structs in this way would make it difficult to pass all of these message t
     - Additionally, in the standard library, Rust provides the `String` type, which is growable, mutable, owned, UTF-8 encoded
     - When someone refers to "strings in Rust," they're usually referring to both types, not one or the other.
     - Standard library also supplies some other string types, like `OsString`, `OsStr`, `CString`, and `CStr`
+    - Strings cannot be indexed by integer, because some UTF-8 characters take more than one byte to display. Instead, index by slicing `[0..4]`
+        - Slices that end within a character will panic at runtime
+        - So don't use slices, either!
+    
 
 #### Conventions
 
