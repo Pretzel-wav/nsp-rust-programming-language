@@ -446,7 +446,10 @@ Using structs in this way would make it difficult to pass all of these message t
     - Strings cannot be indexed by integer, because some UTF-8 characters take more than one byte to display. Instead, index by slicing `[0..4]`
         - Slices that end within a character will panic at runtime
         - So don't use slices, either!
-    
+    - The best way to iterate over the characters in a string is to use the `chars` function
+- Hash maps
+    - `HashMap<K, V>` stores a mapping of keys of type `K` to values of type `V`. 
+    - All keys must have the same type, and all values must have the same type. 
 
 #### Conventions
 

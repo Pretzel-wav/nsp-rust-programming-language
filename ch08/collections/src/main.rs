@@ -71,6 +71,11 @@ fn main() {
 
     // indexing into strings
     // let i = s[1]; // error! type 'str' cannot be indexed by '{integer}'
+
+    // iterating over strings
+    for c in total_string.chars() { // total_string.bytes() would return the byte values
+        println!("{}", c);
+    }
 }
 
 enum SpreadsheetCell {
